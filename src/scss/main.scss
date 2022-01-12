@@ -1,0 +1,12 @@
+@import "_variables";
+
+.app {
+    &__chat {
+        background: $chatBackground;
+        color: $chatTextColor;
+    }
+    &__story {
+        background: $storyBackground;
+        color:$storyTextColor;
+    }
+}
