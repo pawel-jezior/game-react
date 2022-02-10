@@ -4,6 +4,8 @@
     &__chat {
         background: $chatBackground;
         color: $chatTextColor;
+        width: 500px;
+        height: 200px;
     }
     &__story {
         background: $storyBackground;
