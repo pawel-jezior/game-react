@@ -2,10 +2,10 @@ export const fetchBot = (db, bot, fetchSuffix) => {
     fetch(`${db}${bot}/10/welcome${fetchSuffix}`)
     .then((resp) => resp.json())
     .then((resp) => {
-      const h3dowypelnienia = document.querySelector(".app__chat");
-      h3dowypelnienia.innerHTML = resp;
+      const botToFill = document.querySelector(".app__chat");
+      botToFill.innerHTML = resp;
     })
     .catch((error) => {
-      console.log("nie mozna pobrac tresci czatu");
+      console.log("The content of the chat cannot be downloaded.");
     });
 }

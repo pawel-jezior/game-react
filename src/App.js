@@ -19,7 +19,6 @@ function App() {
 
   //pobieranie tresci bota
   fetchBot(db, bot, fetchSuffix);
-  //---
   //pobieranie tresci pytania
   fetchQuestions(db, questions, fetchSuffix);
   //pobieranie odpowiedzi do pytania
@@ -47,8 +46,6 @@ function App() {
 
   //teraz zrobic, zeby wartosci z bazy danych sie pobieraly,
   //kazda do odpowiedniego zadania
-
-  //rozwiazac czerwony problem, trzeba zrobic, zeby wartosc z tablicy sie wyswietala na przycisku
 
   return (
     <div className="app">
