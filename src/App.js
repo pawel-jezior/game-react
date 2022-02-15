@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatButton from "./components/ChatButton";
+import { fetchAnswersToQuestions } from "./fetchData/anwersToQuestions";
 import { fetchBot } from "./fetchData/bot";
 import { fetchQuestions } from "./fetchData/questions";
 import { fetchStory } from "./fetchData/story";
@@ -16,31 +17,16 @@ function App() {
   const wrong = "wrong";
 
   // const [answersToQuestion, setAnswersToQuestion] = useState([])
+  // const answers = []
 
   //pobieranie tresci bota
   fetchBot(db, bot, fetchSuffix);
   //pobieranie tresci pytania
   fetchQuestions(db, questions, fetchSuffix);
   //pobieranie odpowiedzi do pytania
-  // const fillAnswersToQuestion = () => {
-  //   let answersToQuestionTemp = []
-  //     for (let i = 0; i < 3; i++) {
-  //   fetch(`${db}${questions}/2/${wrong}1${fetchSuffix}`)
-
-  //     .then((resp) => resp.json())
-  //     .then((resp) => {
-  //       answersToQuestionTemp.push(resp)
-  //       setAnswersToQuestion(answersToQuestionTemp)
-  //     })
-  //     .catch((error) => {
-  //       console.log("nie mozna pobrac odpowiedzi do pytania")
-  //     });
-  // }
-  // }
-  // fillAnswersToQuestion()
-  // console.log(answersToQuestion)
-
-  //--
+  useEffect(() => {
+    fetchAnswersToQuestions(db, questions, wrong, correct, fetchSuffix);
+  }, []);
   //pobieranie historii
   fetchStory(db, story, content, fetchSuffix);
 
