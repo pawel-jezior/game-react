@@ -1,10 +1,9 @@
-export const wrongAnswers = [];
-export const correctAnswer = [];
-export const fetchAnswersToQuestions = (
+const wrongAnswers = []
+const correctAnswer = []
+export const fetchWrongAnswersToQuestions = (
   db,
   questions,
   wrong,
-  correct,
   fetchSuffix
 ) => {
   for (let i = 1; i < 4; i++) {
@@ -15,10 +14,20 @@ export const fetchAnswersToQuestions = (
       })
       .catch((error) => {
         console.log(
-          "The content of the wrong answers to questions cannot be downloaded."
+          "The content of the wrong answers to questions cannot be downloaded.",  error
         );
       });
   }
+  // console.log("fetch wrong answers to questions");
+  return wrongAnswers
+};
+
+export const fetchCorrectAnswerToQuestions = (
+  db,
+  questions,
+  correct,
+  fetchSuffix
+) => {
   fetch(`${db}${questions}/2/${correct}${fetchSuffix}`)
     .then((resp) => resp.json())
     .then((resp) => {
@@ -26,9 +35,9 @@ export const fetchAnswersToQuestions = (
     })
     .catch((error) => {
       console.log(
-        "The content of the correct answer to questions cannot be downloaded."
+        "The content of the correct answer to questions cannot be downloaded.", error
       );
     });
-  console.log(wrongAnswers);
-  console.log(correctAnswer);
+  // console.log("fetch correct answer to questions");
+  return correctAnswer
 };

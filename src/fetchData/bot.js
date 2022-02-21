@@ -6,6 +6,7 @@ export const fetchBot = (db, bot, fetchSuffix) => {
       botToFill.innerHTML = resp;
     })
     .catch((error) => {
-      console.log("The content of the chat cannot be downloaded.");
+      console.log("The content of the chat cannot be downloaded.", error);
     });
+    // console.log('fetch bot')
 }

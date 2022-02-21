@@ -6,6 +6,7 @@ export const fetchStory = (db, story, content, fetchSuffix) => {
       storyToFill.innerHTML = resp;
     })
     .catch((error) => {
-      console.log("The content of the story cannot be downloaded.");
+      console.log("The content of the story cannot be downloaded.", error);
     });
+    // console.log('fetch story')
 }
