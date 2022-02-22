@@ -1,5 +1,5 @@
-export const fetchQuestions = (db, questions, content, fetchSuffix) => {
-    fetch(`${db}${questions}/0/${content}${fetchSuffix}`)
+export const fetchQuestions = (db, questions, number, content, fetchSuffix) => {
+    fetch(`${db}${questions}/${number}/${content}${fetchSuffix}`)
     .then((resp) => resp.json())
     .then((resp) => {
       const questionsToFill = document.querySelector(".app__question");

@@ -3,11 +3,12 @@ const correctAnswer = []
 export const fetchWrongAnswersToQuestions = (
   db,
   questions,
+  number,
   wrong,
   fetchSuffix
 ) => {
   for (let i = 1; i < 4; i++) {
-    fetch(`${db}${questions}/2/${wrong}${i}${fetchSuffix}`)
+    fetch(`${db}${questions}/${number}/${wrong}${i}${fetchSuffix}`)
       .then((resp) => resp.json())
       .then((resp) => {
         wrongAnswers.push(resp);
@@ -25,10 +26,11 @@ export const fetchWrongAnswersToQuestions = (
 export const fetchCorrectAnswerToQuestions = (
   db,
   questions,
+  number,
   correct,
   fetchSuffix
 ) => {
-  fetch(`${db}${questions}/2/${correct}${fetchSuffix}`)
+  fetch(`${db}${questions}/${number}/${correct}${fetchSuffix}`)
     .then((resp) => resp.json())
     .then((resp) => {
       correctAnswer.push(resp);

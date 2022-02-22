@@ -1,5 +1,5 @@
-export const fetchBot = (db, bot, fetchSuffix) => {
-    fetch(`${db}${bot}/10/welcome${fetchSuffix}`)
+export const fetchBot = (db, bot, number, fetchSuffix) => {
+    fetch(`${db}${bot}/${number}/welcome${fetchSuffix}`)
     .then((resp) => resp.json())
     .then((resp) => {
       const botToFill = document.querySelector(".app__chat");
