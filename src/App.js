@@ -15,6 +15,7 @@ function App() {
   const correct = "correct";
   const wrong = "wrong";
   const numbers = [0,1,2,3,4,5,6,7,8,9,10,11]
+  const kindOfOperation = ['welcome', 'content', 'end']
 
   const [wrongAnswers, setWrongAnswers] = useState([])
   const [correctAnswer, setCorrectAnswer] = useState([])
@@ -30,7 +31,7 @@ function App() {
   const [mainStory, setMainStory] = useState("")
 
   //pobieranie tresci bota
-  fetchBot(db, bot, numbers[10], fetchSuffix);
+  fetchBot(db, bot, numbers[10], kindOfOperation[0], fetchSuffix);
   //pobieranie tresci pytania
   fetchQuestions(db, questions, numbers[0], content, fetchSuffix);
   //pobieranie odpowiedzi do pytania
