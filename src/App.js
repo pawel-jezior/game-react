@@ -15,23 +15,26 @@ function App() {
   const correct = "correct";
   const wrong = "wrong";
   const numbers = [0,1,2,3,4,5,6,7,8,9,10,11]
-  const kindOfOperation = ['welcome', 'content', 'end']
+  const kindOfOperationBot = ['welcome', 'content', 'end']
 
   const [wrongAnswers, setWrongAnswers] = useState([])
   const [correctAnswer, setCorrectAnswer] = useState([])
 
+  //current question
+  const [currentQuestion, setCurrentQuestion] = useState("x")
+
   const [submitButtonName, setSubmitButtonName] = useState("START")
   //1-3 wrong, 4 correct
-  const [radioButton1Name, setRadioButton1Name] = useState("odp 1")
-  const [radioButton2Name, setRadioButton2Name] = useState("odp 2")
-  const [radioButton3Name, setRadioButton3Name] = useState("odp 3")
-  const [radioButton4Name, setRadioButton4Name] = useState("odp 4")
+  const [radioButton1Name, setRadioButton1Name] = useState("x")
+  const [radioButton2Name, setRadioButton2Name] = useState("x")
+  const [radioButton3Name, setRadioButton3Name] = useState("x")
+  const [radioButton4Name, setRadioButton4Name] = useState("x")
 
   //teraz zrobic, zeby story sie pobiera, gdy sie dobrze odpowie i zmieniala i ogolnie te odpowiedzi i pytania i wszystko
-  const [mainStory, setMainStory] = useState("")
+  const [mainStory, setMainStory] = useState("x")
 
   //pobieranie tresci bota
-  fetchBot(db, bot, numbers[10], kindOfOperation[0], fetchSuffix);
+  fetchBot(db, bot, numbers[10], kindOfOperationBot[0], fetchSuffix);
   //pobieranie tresci pytania
   fetchQuestions(db, questions, numbers[0], content, fetchSuffix);
   //pobieranie odpowiedzi do pytania
@@ -40,7 +43,8 @@ function App() {
     setCorrectAnswer(fetchCorrectAnswerToQuestions(db, questions, numbers[0], correct, fetchSuffix));
   });
   //pobieranie historii
-  fetchStory(db, story, numbers[0], content, fetchSuffix);
+  // fetchStory(db, story, numbers[0], content, fetchSuffix);
+  // setMainStory(fetchStory(db, story, numbers[0], content, fetchSuffix))
 
 
   const check = () => {
@@ -50,10 +54,27 @@ function App() {
     } else {
       setSubmitButtonName("SUBMIT")
 
+      setRadioButton1Name(wrongAnswers[0])
+      setRadioButton2Name(wrongAnswers[1])
+      setRadioButton3Name(wrongAnswers[2])
+      setRadioButton4Name(correctAnswer[0])
+
+      setCurrentQuestion(fetchQuestions(db, questions, numbers[0], content, fetchSuffix))
+
+      // setMainStory(fetchStory(db, story, numbers[0], content, fetchSuffix))
+      // console.log("mainStory: " + mainStory)
       //funkcje zmieniajace widocznosc i wyswietlajace pytanie
     }
 
   }
+
+  // const getCurrentQuestion = () => {return currentQuestion}
+
+
+  // const a = "abc"
+  // useEffect(() => {
+  //  document.querySelector(".app__story").innerHTML(mainStory)
+  // },[mainStory])
 
   return (
     <div className="app">
@@ -61,7 +82,7 @@ function App() {
         <h3>Lorem ipsum</h3>
       </div>
       <div className="app__question">
-        <h3>Lorem ipsum</h3>
+        <h3>{currentQuestion}</h3>
       </div>
       <div className="app__chat--buttons">
 
@@ -74,7 +95,7 @@ function App() {
 
       </div>
       <div className="app__story">
-        <h3>Lorem ipsum</h3>
+        <h3>{}</h3>
       </div>
     </div>
   );
