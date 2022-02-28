@@ -22,7 +22,7 @@ function App() {
 
   //current question
   const [currentQuestion, setCurrentQuestion] = useState("x")
-
+  //submit button
   const [submitButtonName, setSubmitButtonName] = useState("START")
   //1-3 wrong, 4 correct
   const [radioButton1Name, setRadioButton1Name] = useState("x")
@@ -30,11 +30,15 @@ function App() {
   const [radioButton3Name, setRadioButton3Name] = useState("x")
   const [radioButton4Name, setRadioButton4Name] = useState("x")
 
+  //chat bot text
+  //zrobic, zeby bylo welcome, nie x
+  const [chatBot, setChatBot] = useState("x")
+
   //teraz zrobic, zeby story sie pobiera, gdy sie dobrze odpowie i zmieniala i ogolnie te odpowiedzi i pytania i wszystko
   const [mainStory, setMainStory] = useState("x")
 
-  //pobieranie tresci bota
-  fetchBot(db, bot, numbers[10], kindOfOperationBot[0], fetchSuffix);
+  //pobieranie tresci bota, numer 10 - welcome
+  // fetchBot(db, bot, numbers[10], kindOfOperationBot[0], fetchSuffix);
   //pobieranie tresci pytania
   fetchQuestions(db, questions, numbers[0], content, fetchSuffix);
   //pobieranie odpowiedzi do pytania
@@ -45,6 +49,16 @@ function App() {
   //pobieranie historii
   // fetchStory(db, story, numbers[0], content, fetchSuffix);
   // setMainStory(fetchStory(db, story, numbers[0], content, fetchSuffix))
+
+  const [chatBotNumber,setChatBotNumber] = useState(0)
+  useEffect (()=>{
+    setChatBot(fetchBot(db, bot, numbers[chatBotNumber], kindOfOperationBot[1], fetchSuffix))
+  },[chatBotNumber])
+
+  const [questionNumber, setQuestionNumber] = useState(-1)
+  useEffect (() =>{
+    setCurrentQuestion(fetchQuestions(db, questions, numbers[0], content, fetchSuffix))
+  }, [questionNumber])
 
 
   const check = () => {
@@ -59,27 +73,27 @@ function App() {
       setRadioButton3Name(wrongAnswers[2])
       setRadioButton4Name(correctAnswer[0])
 
-      setCurrentQuestion(fetchQuestions(db, questions, numbers[0], content, fetchSuffix))
+      // setCurrentQuestion(fetchQuestions(db, questions, numbers[0], content, fetchSuffix))
+      setQuestionNumber(0)
+      setChatBotNumber(1)
+    
+      // setChatBot(fetchBot(db, bot, numbers[0], kindOfOperationBot[1], fetchSuffix))
+
+
+      //===>>>teraz zrobic, zeby z 'welcome' zmienialo sie na pierwszy tekst bota
 
       // setMainStory(fetchStory(db, story, numbers[0], content, fetchSuffix))
       // console.log("mainStory: " + mainStory)
       //funkcje zmieniajace widocznosc i wyswietlajace pytanie
     }
-
   }
 
   // const getCurrentQuestion = () => {return currentQuestion}
 
-
-  // const a = "abc"
-  // useEffect(() => {
-  //  document.querySelector(".app__story").innerHTML(mainStory)
-  // },[mainStory])
-
   return (
     <div className="app">
       <div className="app__chat">
-        <h3>Lorem ipsum</h3>
+        <h3>{chatBot}</h3>
       </div>
       <div className="app__question">
         <h3>{currentQuestion}</h3>

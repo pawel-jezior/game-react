@@ -11,6 +11,6 @@ export const fetchQuestions = (db, questions, number, content, fetchSuffix) => {
       console.log("The content of the questions cannot be downloaded.", error);
     });
     // console.log('fetch question')
-    console.log("question: " + question)
+    // console.log("question: " + question)
     return question
 }
