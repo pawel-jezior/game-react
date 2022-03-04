@@ -26,6 +26,11 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState()
   const [questionNumber, setQuestionNumber] = useState()
 
+  const [currentWrongAnswer1, setCurrentWrongAnswer1] = useState()
+  const [currentWrongAnswer2, setCurrentWrongAnswer2] = useState()
+  const [currentWrongAnswer3, setCurrentWrongAnswer3] = useState()
+  const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState()
+
   const [storyData, setStoryData] = useState()
   const [currentStory, setCurrentStory] = useState()
   const [storyNumber, setStoryNumber] = useState()
@@ -78,7 +83,15 @@ function App() {
   },[botNumber])
 
   useEffect(() => {
-    (questionNumber >= 0) ? setCurrentQuestion(questionsData[questionNumber].content) : setCurrentQuestion(" ")
+    if (questionNumber >= 0) {
+      setCurrentQuestion(questionsData[questionNumber].content)
+
+      setCurrentWrongAnswer1(questionsData[questionNumber].wrong1)
+      setCurrentWrongAnswer2(questionsData[questionNumber].wrong2)
+      setCurrentWrongAnswer3(questionsData[questionNumber].wrong3)
+      
+      setCurrentCorrectAnswer(questionsData[questionNumber].correct)
+    }
   },[questionNumber])
 
 
@@ -101,10 +114,10 @@ function App() {
         <h3>{currentQuestion}</h3>
       </div>
        <div className="app__chat--buttons">
-        {/* <input type="radio" value={radioButton1Name} name="answer" id="wrongAnswer1"/>{radioButton1Name}
-        <input type="radio" value={radioButton2Name} name="answer" id="wrongAnswer2"/>{radioButton2Name}
-        <input type="radio" value={radioButton3Name} name="answer" id="wrongAnswer3"/>{radioButton3Name}
-        <input type="radio" value={radioButton4Name} name="answer" id="correctAnswer"/>{radioButton4Name} */}
+        <input type="radio" value={currentWrongAnswer1} name="answer" id="wrongAnswer1"/>{currentWrongAnswer1}
+        <input type="radio" value={currentWrongAnswer2} name="answer" id="wrongAnswer2"/>{currentWrongAnswer2}
+        <input type="radio" value={currentWrongAnswer3} name="answer" id="wrongAnswer3"/>{currentWrongAnswer3}
+        <input type="radio" value={currentCorrectAnswer} name="answer" id="correctAnswer"/>{currentCorrectAnswer}
 
         <button onClick={() => {check();}}>{submitButtonName}</button>
       </div>
