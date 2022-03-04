@@ -74,12 +74,7 @@ function App() {
   },[])
 
   useEffect(() => {
-    if(botNumber >= 0) {
-      setCurrentBot(botData[botNumber].content) 
-
-    } else {
-      setCurrentBot("Press START")
-    } 
+    (botNumber >= 0) ? setCurrentBot(botData[botNumber].content) : setCurrentBot("Press START")
   },[botNumber])
 
   useEffect(() => {
