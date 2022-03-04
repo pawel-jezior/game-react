@@ -89,20 +89,24 @@ function App() {
       setCurrentWrongAnswer1(questionsData[questionNumber].wrong1)
       setCurrentWrongAnswer2(questionsData[questionNumber].wrong2)
       setCurrentWrongAnswer3(questionsData[questionNumber].wrong3)
-      
+
       setCurrentCorrectAnswer(questionsData[questionNumber].correct)
     }
   },[questionNumber])
 
 
   const check = () => {
-    // console.log(botData)
-    // console.log(questionsData)
-    // console.log(storyData)
+    if (submitButtonName !== "SUBMIT") {
+
+    setSubmitButtonName("SUBMIT")
+
     console.log(botData[10].content)
     console.log(botData[0].content)
+    
     setBotNumber(0)
     setQuestionNumber(0)
+
+    }
   }
 
   return (
