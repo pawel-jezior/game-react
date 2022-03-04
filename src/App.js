@@ -82,6 +82,10 @@ function App() {
     } 
   },[botNumber])
 
+  useEffect(() => {
+    (questionNumber >= 0) ? setCurrentQuestion(questionsData[questionNumber].content) : setCurrentQuestion(" ")
+  },[questionNumber])
+
 
   const check = () => {
     // console.log(botData)
@@ -90,6 +94,7 @@ function App() {
     console.log(botData[10].content)
     console.log(botData[0].content)
     setBotNumber(0)
+    setQuestionNumber(0)
   }
 
   return (
