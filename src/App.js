@@ -21,8 +21,18 @@ function App() {
   const kindOfOperationBot = ["welcome", "content", "end"];
 
   const [botData, setBotData] = useState()
+  const [currentBot, setCurrentBot] = useState()
+  const [botNumber, setBotNumber] = useState()
+
   const [questionsData, setQuestionsData] = useState()
+  const [currentQuestion, setCurrentQuestion] = useState()
+  const [questionNumber, setQuestionNumber] = useState()
+
   const [storyData, setStoryData] = useState()
+  const [currentStory, setCurrentStory] = useState()
+  const [storyNumber, setStoryNumber] = useState()
+
+
   //==============================================================================
   const getBotData = async () => {
     await fetch(db + bot + fetchSuffix)
@@ -57,27 +67,38 @@ function App() {
     });
   }
   //==============================================================================
-
   useEffect(() => {
     getBotData()
     getQuestionsData()
     getStoryData()
   },[])
 
+  useEffect(() => {
+    if(botNumber >= 0) {
+      setCurrentBot(botData[botNumber].content)
+    } else {
+      setCurrentBot("Press START")
+    }
+    
+  },[botNumber])
+
 
   const check = () => {
-    console.log(botData)
-    console.log(questionsData)
-    console.log(storyData)
+    // console.log(botData)
+    // console.log(questionsData)
+    // console.log(storyData)
+    console.log(botData[10].content)
+    console.log(botData[0].content)
+    setBotNumber(0)
   }
 
   return (
     <div className="app">
       <div className="app__chat">
-        <h3>abc</h3>
+        <h3>{currentBot}</h3>
       </div>
       <div className="app__question">
-        <h3>abc</h3>
+        <h3>{currentQuestion}</h3>
       </div>
        <div className="app__chat--buttons">
         {/* <input type="radio" value={radioButton1Name} name="answer" id="wrongAnswer1"/>{radioButton1Name}
@@ -88,7 +109,7 @@ function App() {
         <button onClick={() => {check();}}>abc</button>
       </div>
       <div className="app__story">
-        <h3>abc</h3>
+        <h3>{currentStory}</h3>
       </div>
     </div>
   );
