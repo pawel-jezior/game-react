@@ -96,17 +96,19 @@ function App() {
 
 
   const check = () => {
-    if (submitButtonName !== "SUBMIT") {
+    if (submitButtonName !== "SUBMIT") setSubmitButtonName("SUBMIT")
 
-    setSubmitButtonName("SUBMIT")
+    // if (submitButtonName !== "SUBMIT") {
+
+    // setSubmitButtonName("SUBMIT")
 
     console.log(botData[10].content)
     console.log(botData[0].content)
-    
+
     setBotNumber(0)
     setQuestionNumber(0)
 
-    }
+    // }
   }
 
   return (
