@@ -17,8 +17,6 @@ function App() {
   const content = "content";
   const correct = "correct";
   const wrong = "wrong";
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-  const kindOfOperationBot = ["welcome", "content", "end"];
 
   const [botData, setBotData] = useState()
   const [currentBot, setCurrentBot] = useState()
@@ -31,6 +29,8 @@ function App() {
   const [storyData, setStoryData] = useState()
   const [currentStory, setCurrentStory] = useState()
   const [storyNumber, setStoryNumber] = useState()
+
+  const [submitButtonName, setSubmitButtonName] = useState("START")
 
 
   //==============================================================================
@@ -75,11 +75,11 @@ function App() {
 
   useEffect(() => {
     if(botNumber >= 0) {
-      setCurrentBot(botData[botNumber].content)
+      setCurrentBot(botData[botNumber].content) 
+
     } else {
       setCurrentBot("Press START")
-    }
-    
+    } 
   },[botNumber])
 
 
@@ -106,7 +106,7 @@ function App() {
         <input type="radio" value={radioButton3Name} name="answer" id="wrongAnswer3"/>{radioButton3Name}
         <input type="radio" value={radioButton4Name} name="answer" id="correctAnswer"/>{radioButton4Name} */}
 
-        <button onClick={() => {check();}}>abc</button>
+        <button onClick={() => {check();}}>{submitButtonName}</button>
       </div>
       <div className="app__story">
         <h3>{currentStory}</h3>
