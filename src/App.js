@@ -94,21 +94,30 @@ function App() {
     }
   },[questionNumber])
 
+  useEffect(() => {
+    if (storyNumber >= 0) setCurrentStory(storyData[storyNumber].content)
+  }, [storyNumber])
+
 
   const check = () => {
     if (submitButtonName !== "SUBMIT") setSubmitButtonName("SUBMIT")
 
-    // if (submitButtonName !== "SUBMIT") {
-
-    // setSubmitButtonName("SUBMIT")
-
     console.log(botData[10].content)
     console.log(botData[0].content)
+    // console.log("current story - " + currentStory)
 
     setBotNumber(0)
     setQuestionNumber(0)
 
-    // }
+    if (document.querySelector('#correctAnswer').checked){
+      setStoryNumber(0)
+
+    } else if (document.querySelector('#wrongAnswer1').checked
+            || document.querySelector('#wrongAnswer2').checked
+            || document.querySelector('#wrongAnswer3').checked) {
+
+            }
+
   }
 
   return (
