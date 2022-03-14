@@ -34,10 +34,12 @@ function App() {
   const [storyData, setStoryData] = useState()
   const [currentStory, setCurrentStory] = useState()
   const [storyNumber, setStoryNumber] = useState()
+  //zrobic mape, z true false 
+  // const [displayedStory, setDisplayedStory] = useState(new Map([1,'false'],[2,'false']))
 
   const [submitButtonName, setSubmitButtonName] = useState("START")
 
-
+  // console.log(displayedStory.get(1))
   //==============================================================================
   const getBotData = async () => {
     await fetch(db + bot + fetchSuffix)
@@ -98,27 +100,39 @@ function App() {
     if (storyNumber >= 0) setCurrentStory(storyData[storyNumber].content)
   }, [storyNumber])
 
+  useEffect(() => {
+
+  },[])
+
 
   const check = () => {
-    if (submitButtonName !== "SUBMIT") setSubmitButtonName("SUBMIT")
-
-    console.log(botData[10].content)
-    console.log(botData[0].content)
-    // console.log("current story - " + currentStory)
-
-    setBotNumber(0)
-    setQuestionNumber(0)
+    if (submitButtonName !== "SUBMIT") {
+      setSubmitButtonName("SUBMIT")
+      setBotNumber(0)
+      setQuestionNumber(0)
+    }
 
     if (document.querySelector('#correctAnswer').checked){
       setStoryNumber(0)
+
+      if (questionNumber < 9) setQuestionNumber(questionNumber + 1)
+      if (botNumber < 11) setBotNumber(botNumber + 1)
+
+      
 
     } else if (document.querySelector('#wrongAnswer1').checked
             || document.querySelector('#wrongAnswer2').checked
             || document.querySelector('#wrongAnswer3').checked) {
 
             }
-
+    uncheckRadioButtons()
   }
+
+  const uncheckRadioButtons = () => {
+    Array.from(document.querySelectorAll('input[name="answer"]:checked'), input => input.checked = false );
+  }
+
+
 
   return (
     <div className="app">
