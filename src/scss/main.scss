@@ -6,6 +6,9 @@
         color: $chatTextColor;
         width: 500px;
         height: 200px;
+        &--buttons-radioButton {
+            display: none;
+        }
     }
     &__story {
         background: $storyBackground;

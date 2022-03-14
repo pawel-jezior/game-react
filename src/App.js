@@ -103,13 +103,13 @@ function App() {
   useEffect(() => {
 
   },[])
-
-
+  
   const check = () => {
     if (submitButtonName !== "SUBMIT") {
       setSubmitButtonName("SUBMIT")
       setBotNumber(0)
       setQuestionNumber(0)
+      showRadioButtons()
     }
 
     if (document.querySelector('#correctAnswer').checked){
@@ -129,7 +129,11 @@ function App() {
   }
 
   const uncheckRadioButtons = () => {
-    Array.from(document.querySelectorAll('input[name="answer"]:checked'), input => input.checked = false );
+    Array.from(document.querySelectorAll('input[name="answer"]:checked'), input => input.checked = false)
+  }
+
+  const showRadioButtons = () => {
+    Array.from(document.querySelectorAll('input[name="answer"]'), input => input.style.display = 'inline')
   }
 
 
@@ -143,10 +147,10 @@ function App() {
         <h3>{currentQuestion}</h3>
       </div>
        <div className="app__chat--buttons">
-        <input type="radio" value={currentWrongAnswer1} name="answer" id="wrongAnswer1"/>{currentWrongAnswer1}
-        <input type="radio" value={currentWrongAnswer2} name="answer" id="wrongAnswer2"/>{currentWrongAnswer2}
-        <input type="radio" value={currentWrongAnswer3} name="answer" id="wrongAnswer3"/>{currentWrongAnswer3}
-        <input type="radio" value={currentCorrectAnswer} name="answer" id="correctAnswer"/>{currentCorrectAnswer}
+        <input className="app__chat--buttons-radioButton" type="radio" value={currentWrongAnswer1} name="answer" id="wrongAnswer1"/>{currentWrongAnswer1}
+        <input className="app__chat--buttons-radioButton" type="radio" value={currentWrongAnswer2} name="answer" id="wrongAnswer2"/>{currentWrongAnswer2}
+        <input className="app__chat--buttons-radioButton" type="radio" value={currentWrongAnswer3} name="answer" id="wrongAnswer3"/>{currentWrongAnswer3}
+        <input className="app__chat--buttons-radioButton" type="radio" value={currentCorrectAnswer} name="answer" id="correctAnswer"/>{currentCorrectAnswer}
 
         <button onClick={() => {check();}}>{submitButtonName}</button>
       </div>
