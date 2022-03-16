@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const db =
-    "https://game-react-2e9ab-default-rtdb.europe-west1.firebasedatabase.app/";
+  const db = "https://game-react-2e9ab-default-rtdb.europe-west1.firebasedatabase.app/";
   const fetchSuffix = ".json";
   const bot = "bot";
   const questions = "questions";
   const story = "story";
-  const content = "content";
-  const correct = "correct";
-  const wrong = "wrong";
+  const wrongAnswerBot = "Wrong answer! Try again. You have ONE last chance!"
 
   const [botData, setBotData] = useState()
   const [currentBot, setCurrentBot] = useState()
@@ -23,6 +20,7 @@ function App() {
   const [currentWrongAnswer2, setCurrentWrongAnswer2] = useState()
   const [currentWrongAnswer3, setCurrentWrongAnswer3] = useState()
   const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState()
+  const [wrongAnswerCounter, setWrongAnswerCounter] = useState(0)
 
   const [storyData, setStoryData] = useState()
   const [currentStory, setCurrentStory] = useState("")
@@ -89,13 +87,42 @@ function App() {
   useEffect(() => {
     if (storyNumber >= 0) setCurrentStory(currentStory + " " + storyData[storyNumber].content)
   }, [storyNumber])
+
+  useEffect(() => {
+
+    if (wrongAnswerCounter >= 2) {
+
+      countdownAndRefresh()
+
+    }
+  }, [wrongAnswerCounter])
+
+  const refreshWebPage = () => {
+    window.location.reload()
+  }
+
+  const countdownAndRefresh = () => {
+
+    let timeLeft = 5
+    let downloadTimer = setInterval(() => {
+      if (timeLeft < 1) {
+        clearInterval(downloadTimer)
+        refreshWebPage()
+      }
+      setCurrentBot("You have lost... Try again in " + timeLeft)
+      timeLeft -= 1
+    },1000)
+
+  }
   
   const check = () => {
     if (submitButtonName !== "SUBMIT") {
 
       setSubmitButtonName("SUBMIT")
+
       setBotNumber(0)
       setQuestionNumber(0)
+
       showRadioButtons()
     }
     if (document.querySelector('#correctAnswer').checked){
@@ -110,6 +137,8 @@ function App() {
             || document.querySelector('#wrongAnswer2').checked
             || document.querySelector('#wrongAnswer3').checked) {
 
+                displayBotWithWrongAnswerText()
+                incrementWrongAnswerCounter()
             }
     uncheckRadioButtons()
   }
@@ -118,23 +147,23 @@ function App() {
     Array.from(document.querySelectorAll('input[name="answer"]'), input => input.style.display = 'inline')
   }
 
-  const incrementBotNumber = () => {
-    if (botNumber < 10) setBotNumber(botNumber + 1)
-  }
+  const incrementBotNumber = () => {if (botNumber < 10) setBotNumber(botNumber + 1)}
 
-  const incrementQuestionNumber = () => {
-    if (questionNumber < 9) setQuestionNumber(questionNumber + 1)
-  }
+  const incrementQuestionNumber = () => {if (questionNumber < 9) setQuestionNumber(questionNumber + 1)}
 
-  const incrementStoryNumber = () => {
-    if (storyNumber < 9) setStoryNumber(storyNumber + 1)
-  }
+  const incrementStoryNumber = () => {if (storyNumber < 9) setStoryNumber(storyNumber + 1)}
 
   const uncheckRadioButtons = () => {
     Array.from(document.querySelectorAll('input[name="answer"]:checked'), input => input.checked = false)
   }
 
+  const displayBotWithWrongAnswerText = () => {
+    if (currentBot != wrongAnswerBot && botNumber < 10 && wrongAnswerCounter < 2) {
+      setCurrentBot(wrongAnswerBot) 
+    }
+  }
 
+  const incrementWrongAnswerCounter = () => {setWrongAnswerCounter(wrongAnswerCounter + 1)}
 
   return (
     <div className="app">
