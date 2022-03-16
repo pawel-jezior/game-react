@@ -1,11 +1,4 @@
 import { useEffect, useState } from "react";
-// import {
-//   fetchWrongAnswersToQuestions,
-//   fetchCorrectAnswerToQuestions,
-// } from "./fetchData/anwersToQuestions";
-import { fetchBot } from "./fetchData/bot";
-import { fetchQuestionsWithAnswers } from "./fetchData/questions";
-import { fetchStory } from "./fetchData/story";
 
 function App() {
   const db =
@@ -32,14 +25,11 @@ function App() {
   const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState()
 
   const [storyData, setStoryData] = useState()
-  const [currentStory, setCurrentStory] = useState()
+  const [currentStory, setCurrentStory] = useState("")
   const [storyNumber, setStoryNumber] = useState()
-  //zrobic mape, z true false 
-  // const [displayedStory, setDisplayedStory] = useState(new Map([1,'false'],[2,'false']))
 
   const [submitButtonName, setSubmitButtonName] = useState("START")
 
-  // console.log(displayedStory.get(1))
   //==============================================================================
   const getBotData = async () => {
     await fetch(db + bot + fetchSuffix)
@@ -97,28 +87,24 @@ function App() {
   },[questionNumber])
 
   useEffect(() => {
-    if (storyNumber >= 0) setCurrentStory(storyData[storyNumber].content)
+    if (storyNumber >= 0) setCurrentStory(currentStory + " " + storyData[storyNumber].content)
   }, [storyNumber])
-
-  useEffect(() => {
-
-  },[])
   
   const check = () => {
     if (submitButtonName !== "SUBMIT") {
+
       setSubmitButtonName("SUBMIT")
       setBotNumber(0)
       setQuestionNumber(0)
       showRadioButtons()
     }
-
     if (document.querySelector('#correctAnswer').checked){
-      setStoryNumber(0)
 
-      if (questionNumber < 9) setQuestionNumber(questionNumber + 1)
-      if (botNumber < 11) setBotNumber(botNumber + 1)
+      setStoryNumber(questionNumber)
 
-      
+      incrementBotNumber()
+      incrementQuestionNumber()
+      incrementStoryNumber()
 
     } else if (document.querySelector('#wrongAnswer1').checked
             || document.querySelector('#wrongAnswer2').checked
@@ -128,12 +114,24 @@ function App() {
     uncheckRadioButtons()
   }
 
-  const uncheckRadioButtons = () => {
-    Array.from(document.querySelectorAll('input[name="answer"]:checked'), input => input.checked = false)
-  }
-
   const showRadioButtons = () => {
     Array.from(document.querySelectorAll('input[name="answer"]'), input => input.style.display = 'inline')
+  }
+
+  const incrementBotNumber = () => {
+    if (botNumber < 10) setBotNumber(botNumber + 1)
+  }
+
+  const incrementQuestionNumber = () => {
+    if (questionNumber < 9) setQuestionNumber(questionNumber + 1)
+  }
+
+  const incrementStoryNumber = () => {
+    if (storyNumber < 9) setStoryNumber(storyNumber + 1)
+  }
+
+  const uncheckRadioButtons = () => {
+    Array.from(document.querySelectorAll('input[name="answer"]:checked'), input => input.checked = false)
   }
 
 
