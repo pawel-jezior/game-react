@@ -8,6 +8,7 @@ function App() {
   const questions = "questions";
   const story = "story";
   const wrongAnswerBot = "Wrong answer! Try again. You have ONE last chance!";
+  const youHaveLostBot = "You have lost... Try again in "
 
   const [botData, setBotData] = useState();
   const [currentBot, setCurrentBot] = useState();
@@ -110,7 +111,7 @@ function App() {
         clearInterval(downloadTimer);
         refreshWebPage();
       }
-      setCurrentBot("You have lost... Try again in " + timeLeft);
+      setCurrentBot(youHaveLostBot + timeLeft);
       timeLeft -= 1;
     }, 1000);
 
