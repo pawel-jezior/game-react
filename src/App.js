@@ -48,10 +48,7 @@ function App() {
         setQuestionsData(response);
       })
       .catch((error) => {
-        console.log(
-          "The content of the QUESTIONS cannot be downloaded.",
-          error
-        );
+        console.log("The content of the QUESTIONS cannot be downloaded.", error);
       });
   };
   //==============================================================================
@@ -67,19 +64,23 @@ function App() {
   };
   //==============================================================================
   useEffect(() => {
+
     getBotData();
+
     getQuestionsData();
+
     getStoryData();
+
   }, []);
 
   useEffect(() => {
-    botNumber >= 0
-      ? setCurrentBot(botData[botNumber].content)
-      : setCurrentBot("Press START");
+    botNumber >= 0 ? setCurrentBot(botData[botNumber].content) : setCurrentBot("Press START");
   }, [botNumber]);
 
   useEffect(() => {
+
     if (questionNumber >= 0) {
+
       setCurrentQuestion(questionsData[questionNumber].content);
 
       setCurrentWrongAnswer1(questionsData[questionNumber].wrong1);
@@ -88,24 +89,21 @@ function App() {
 
       setCurrentCorrectAnswer(questionsData[questionNumber].correct);
     }
+
   }, [questionNumber]);
 
   useEffect(() => {
-    if (storyNumber >= 0)
-      setCurrentStory(currentStory + " " + storyData[storyNumber].content);
+    if (storyNumber >= 0) setCurrentStory(currentStory + " " + storyData[storyNumber].content);
   }, [storyNumber]);
 
   useEffect(() => {
-    if (wrongAnswerCounter >= 2) {
-      countdownAndRefresh();
-    }
+    if (wrongAnswerCounter >= 2) { countdownAndRefresh();}
   }, [wrongAnswerCounter]);
 
-  const refreshWebPage = () => {
-    window.location.reload();
-  };
+  const refreshWebPage = () => {window.location.reload();};
 
   const countdownAndRefresh = () => {
+
     let timeLeft = 5;
     let downloadTimer = setInterval(() => {
       if (timeLeft < 1) {
@@ -115,73 +113,63 @@ function App() {
       setCurrentBot("You have lost... Try again in " + timeLeft);
       timeLeft -= 1;
     }, 1000);
+
   };
 
   const check = () => {
     if (submitButtonName !== "SUBMIT") {
-      setSubmitButtonName("SUBMIT");
 
+      setSubmitButtonName("SUBMIT");
       setBotNumber(0);
       setQuestionNumber(0);
-
       showRadioButtons();
+
     }
     if (document.querySelector("#correctAnswer").checked) {
-      setStoryNumber(questionNumber);
 
+      setStoryNumber(questionNumber);
       incrementBotNumber();
       incrementQuestionNumber();
       incrementStoryNumber();
+
     } else if (
       document.querySelector("#wrongAnswer1").checked ||
       document.querySelector("#wrongAnswer2").checked ||
       document.querySelector("#wrongAnswer3").checked
     ) {
-      displayBotWithWrongAnswerText();
+
+      
       incrementWrongAnswerCounter();
+      displayBotWithWrongAnswerText();
     }
     uncheckRadioButtons();
   };
 
   const showRadioButtons = () => {
-    Array.from(
-      document.querySelectorAll('input[name="answer"]'),
-      (input) => (input.style.display = "inline")
-    );
+    Array.from(document.querySelectorAll('input[name="answer"]'),(input) => (input.style.display = "inline"));
   };
 
-  const incrementBotNumber = () => {
-    if (botNumber < 10) setBotNumber(botNumber + 1);
-  };
+  const incrementBotNumber = () => {if (botNumber < 10) setBotNumber(botNumber + 1);};
 
-  const incrementQuestionNumber = () => {
-    if (questionNumber < 9) setQuestionNumber(questionNumber + 1);
-  };
+  const incrementQuestionNumber = () => {if (questionNumber < 9) setQuestionNumber(questionNumber + 1);};
 
-  const incrementStoryNumber = () => {
-    if (storyNumber < 9) setStoryNumber(storyNumber + 1);
-  };
+  const incrementStoryNumber = () => {if (storyNumber < 9) setStoryNumber(storyNumber + 1);};
 
   const uncheckRadioButtons = () => {
-    Array.from(
-      document.querySelectorAll('input[name="answer"]:checked'),
-      (input) => (input.checked = false)
-    );
+    Array.from(document.querySelectorAll('input[name="answer"]:checked'),(input) => (input.checked = false));
   };
 
   const displayBotWithWrongAnswerText = () => {
-    if (
-      currentBot != wrongAnswerBot &&
-      botNumber < 10 &&
-      wrongAnswerCounter < 2
-    ) {
+    if (currentBot != wrongAnswerBot
+      && botNumber < 10
+      && wrongAnswerCounter < 2) {
+
       setCurrentBot(wrongAnswerBot);
+
     }
   };
 
-  const incrementWrongAnswerCounter = () => {
-    setWrongAnswerCounter(wrongAnswerCounter + 1);
-  };
+  const incrementWrongAnswerCounter = () => {setWrongAnswerCounter(wrongAnswerCounter + 1);};
 
   return (
     <div className="app">
@@ -225,13 +213,7 @@ function App() {
         />
         {currentCorrectAnswer}
 
-        <button
-          onClick={() => {
-            check();
-          }}
-        >
-          {submitButtonName}
-        </button>
+        <button onClick={() => { check(); }}> {submitButtonName}</button>
       </div>
       <div className="app__story">
         <h3>{currentStory}</h3>
