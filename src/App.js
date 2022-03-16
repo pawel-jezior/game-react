@@ -161,13 +161,15 @@ function App() {
   };
 
   const displayBotWithWrongAnswerText = () => {
+
     if (currentBot != wrongAnswerBot
       && botNumber < 10
-      && wrongAnswerCounter < 2) {
+      && wrongAnswerCounter < 1) {
 
       setCurrentBot(wrongAnswerBot);
 
     }
+
   };
 
   const incrementWrongAnswerCounter = () => {setWrongAnswerCounter(wrongAnswerCounter + 1);};
