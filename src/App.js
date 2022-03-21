@@ -7,8 +7,8 @@ function App() {
   const bot = "bot";
   const questions = "questions";
   const story = "story";
-  const wrongAnswerBot = "Wrong answer! Try again. You have ONE last chance!";
-  const youHaveLostBot = "You have lost... Try again in "
+  const wrongAnswerBot = "Zła odpowiedź! Spróbuj ponownie. Masz OSTATNIĄ szansę!";
+  const youHaveLostBot = "Przegrana. Spróbuj ponownie za "
 
   const [botData, setBotData] = useState();
   const [currentBot, setCurrentBot] = useState();
@@ -75,7 +75,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    botNumber >= 0 ? setCurrentBot(botData[botNumber].content) : setCurrentBot("Press START");
+    botNumber >= 0 ? setCurrentBot(botData[botNumber].content) : setCurrentBot("Naciśnij START");
   }, [botNumber]);
 
   useEffect(() => {
