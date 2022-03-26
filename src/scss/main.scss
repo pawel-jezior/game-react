@@ -1,17 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700&display=swap');
+
 @import "_variables";
+@import "modules/chat.scss";
+@import "modules/question.scss";
+@import "modules/buttons.scss";
+@import "modules/story.scss";
+
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  body { 
+    margin: 0;
+    padding:0;
+ }
 
 .app {
-    &__chat {
-        background: $chatBackground;
-        color: $chatTextColor;
-        width: 500px;
-        height: 200px;
-        &--buttons-radioButton {
-            display: none;
-        }
-    }
-    &__story {
-        background: $storyBackground;
-        color:$storyTextColor;
-    }
+    display: grid;
+    font-family: 'Crimson Pro', serif;
+    font-size: 16px;
 }
+
+// app
+
+// app__chat
+// app__question
+// app__buttons > app__chat--buttons-radioButton
+// app__story
+
+
+//320pxx640px

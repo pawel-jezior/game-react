@@ -1,0 +1,13 @@
+
+.app__chat {
+    display: flex;
+    background: $chatBackground;
+    color: $chatTextColor;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}

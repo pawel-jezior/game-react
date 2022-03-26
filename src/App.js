@@ -147,7 +147,7 @@ function App() {
   };
 
   const showRadioButtons = () => {
-    Array.from(document.querySelectorAll('input[name="answer"]'),(input) => (input.style.display = "inline"));
+    Array.from(document.querySelectorAll('input[name="answer"]'),(input) => (input.style.display = "inline-block"));
   };
 
   const incrementBotNumber = () => {if (botNumber < 10) setBotNumber(botNumber + 1);};
@@ -182,41 +182,35 @@ function App() {
       <div className="app__question">
         <h3>{currentQuestion}</h3>
       </div>
-      <div className="app__chat--buttons">
-        <input
-          className="app__chat--buttons-radioButton"
+      <div className="app__radioButtons">
+          <input className="app__radioButtons--button"
           type="radio"
           value={currentWrongAnswer1}
           name="answer"
-          id="wrongAnswer1"
-        />
-        {currentWrongAnswer1}
-        <input
-          className="app__chat--buttons-radioButton"
+          id="wrongAnswer1"/>
+          {currentWrongAnswer1}
+          <br />
+          <input className="app__radioButtons--button"
           type="radio"
           value={currentWrongAnswer2}
           name="answer"
-          id="wrongAnswer2"
-        />
-        {currentWrongAnswer2}
-        <input
-          className="app__chat--buttons-radioButton"
+          id="wrongAnswer2"/>{currentWrongAnswer2}
+          <br />
+          <input className="app__radioButtons--button"
           type="radio"
           value={currentWrongAnswer3}
           name="answer"
-          id="wrongAnswer3"
-        />
-        {currentWrongAnswer3}
-        <input
-          className="app__chat--buttons-radioButton"
+          id="wrongAnswer3"/>{currentWrongAnswer3}
+          <br />
+          <input className="app__radioButtons--button"
           type="radio"
           value={currentCorrectAnswer}
           name="answer"
-          id="correctAnswer"
-        />
-        {currentCorrectAnswer}
-
-        <button onClick={() => { check(); }}> {submitButtonName}</button>
+          id="correctAnswer"/>{currentCorrectAnswer}
+          <br />
+      </div>
+      <div className="app__submitButton">
+      <button className="app__submitButton--button" onClick={() => { check(); }}> {submitButtonName}</button>
       </div>
       <div className="app__story">
         <h3>{currentStory}</h3>
