@@ -1,27 +1,23 @@
 .app__radioButtons {
   display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 10px;
-  height: 200px;
-  background: $buttonsBackground;
-  color: $buttonsTextColor;
-  margin-top: -1px;
+  grid-template-columns: 10% 90%;
+  justify-items: left;
+  align-items: center;
+  height: 0;
+  opacity: 0;
   &--button {
     display: none;
-    margin: 3px 15px 10px 15px;
+    margin-top: -2px; 
   }
 }
 
 .app__submitButton {
-    margin-top: -2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $buttonsBackground;
-    color: $buttonsTextColor;
     &--button {
         background: $submitButtonBackground;
-        color: $submitButtonTextColor;
+        color: $textColor;
         margin: 10px;
   }
 }

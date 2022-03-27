@@ -19,20 +19,13 @@ html {
   body { 
     margin: 0;
     padding:0;
+    background: $appBackground;
  }
 
 .app {
     display: grid;
     font-family: 'Crimson Pro', serif;
     font-size: 16px;
+    color: $textColor;
 }
-
-// app
-
-// app__chat
-// app__question
-// app__buttons > app__chat--buttons-radioButton
-// app__story
-
-
 //320pxx640px

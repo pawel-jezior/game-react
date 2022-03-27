@@ -10,6 +10,11 @@ function App() {
   const wrongAnswerBot = "Zła odpowiedź! Spróbuj ponownie. Masz OSTATNIĄ szansę!";
   const youHaveLostBot = "Przegrana. Spróbuj ponownie za "
 
+  const questionSection = document.querySelector(".app__question")
+  const answersSection = document.querySelector(".app__radioButtons")
+  const submitButtonSection = document.querySelector(".app__submitButton")
+  const chatSection = document.querySelector(".app__chat")
+
   const [botData, setBotData] = useState();
   const [currentBot, setCurrentBot] = useState();
   const [botNumber, setBotNumber] = useState();
@@ -76,6 +81,7 @@ function App() {
 
   useEffect(() => {
     botNumber >= 0 ? setCurrentBot(botData[botNumber].content) : setCurrentBot("Naciśnij START");
+    if (botNumber > 9){slideUpAllUnnecessarySections();}
   }, [botNumber]);
 
   useEffect(() => {
@@ -117,6 +123,27 @@ function App() {
 
   };
 
+  const slideDown = (element, height, padding) => {
+    element.style.transition = "all 1s ease-in-out"
+    element.style.height = height;
+    element.style.padding = padding;
+    element.style.opacity = 1;
+
+  }
+
+  const slideUp = (element) => {
+    element.style.transition = "all 1s ease-in-out"
+    element.style.height = 0;
+    element.style.padding = 0;
+    element.style.opacity = 0;
+  }
+
+  const slideUpAllUnnecessarySections = () => {
+    slideUp(questionSection);
+    slideUp(answersSection);
+    slideUp(submitButtonSection)
+  }
+
   const check = () => {
     if (submitButtonName !== "SUBMIT") {
 
@@ -124,6 +151,9 @@ function App() {
       setBotNumber(0);
       setQuestionNumber(0);
       showRadioButtons();
+
+      slideDown(questionSection, "128px", "16px")
+      slideDown(answersSection, "200px", "10px 30px")
 
     }
     if (document.querySelector("#correctAnswer").checked) {
