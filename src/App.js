@@ -9,11 +9,14 @@ function App() {
   const story = "story";
   const wrongAnswerBot = "Zła odpowiedź! Spróbuj ponownie. Masz OSTATNIĄ szansę!";
   const youHaveLostBot = "Przegrana. Spróbuj ponownie za "
+  const wrongAnswer1 = "wrongAnswer1"
+  const wrongAnswer2 = "wrongAnswer2"
+  const wrongAnswer3 = "wrongAnswer3"
+  const correctAnswer = "correctAnswer"
 
   const questionSection = document.querySelector(".app__question")
   const answersSection = document.querySelector(".app__radioButtons")
   const submitButtonSection = document.querySelector(".app__submitButton")
-  const chatSection = document.querySelector(".app__chat")
 
   const [botData, setBotData] = useState();
   const [currentBot, setCurrentBot] = useState();
@@ -23,11 +26,8 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState();
   const [questionNumber, setQuestionNumber] = useState();
 
-  const [currentWrongAnswer1, setCurrentWrongAnswer1] = useState();
-  const [currentWrongAnswer2, setCurrentWrongAnswer2] = useState();
-  const [currentWrongAnswer3, setCurrentWrongAnswer3] = useState();
-  const [currentCorrectAnswer, setCurrentCorrectAnswer] = useState();
   const [wrongAnswerCounter, setWrongAnswerCounter] = useState(0);
+  const [answers, setAsnwers] = useState([["a","wrongAnswer1"],["b","wrongAnswer2"],["c","wrongAnswer3"],["d","correctAnswer"]])
 
   const [storyData, setStoryData] = useState();
   const [currentStory, setCurrentStory] = useState("");
@@ -90,11 +90,14 @@ function App() {
 
       setCurrentQuestion(questionsData[questionNumber].content);
 
-      setCurrentWrongAnswer1(questionsData[questionNumber].wrong1);
-      setCurrentWrongAnswer2(questionsData[questionNumber].wrong2);
-      setCurrentWrongAnswer3(questionsData[questionNumber].wrong3);
+      let tempArray = [[questionsData[questionNumber].wrong1, wrongAnswer1],
+      [questionsData[questionNumber].wrong2, wrongAnswer2],
+      [questionsData[questionNumber].wrong3, wrongAnswer3],
+      [questionsData[questionNumber].correct, correctAnswer]]
 
-      setCurrentCorrectAnswer(questionsData[questionNumber].correct);
+      shuffleArray(tempArray)
+
+      setAsnwers(tempArray)
     }
 
   }, [questionNumber]);
@@ -169,7 +172,6 @@ function App() {
       document.querySelector("#wrongAnswer3").checked
     ) {
 
-      
       incrementWrongAnswerCounter();
       displayBotWithWrongAnswerText();
     }
@@ -204,6 +206,13 @@ function App() {
 
   const incrementWrongAnswerCounter = () => {setWrongAnswerCounter(wrongAnswerCounter + 1);};
 
+const shuffleArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      } return array
+};
+
   return (
     <div className="app">
       <div className="app__chat">
@@ -213,38 +222,38 @@ function App() {
         <h3>{currentQuestion}</h3>
       </div>
       <div className="app__radioButtons">
-      <label for="wrongAnswer1">
 
+          <label for="wrongAnswer1">
           <input className="app__radioButtons--button"
           type="radio"
-          value={currentWrongAnswer1}
+          value={answers[0][0]}
           name="answer"
-          id="wrongAnswer1"/>
-          {currentWrongAnswer1}<br /></label>
+          id={answers[0][1]}/>
+          {answers[0][0]}<br /></label>
           
           <label for="wrongAnswer2">
           <input className="app__radioButtons--button"
           type="radio"
-          value={currentWrongAnswer2}
+          value={answers[1][0]}
           name="answer"
-          id="wrongAnswer2"/>
-          {currentWrongAnswer2}<br /></label>
+          id={answers[1][1]}/>
+          {answers[1][0]}<br /></label>
           
           <label for="wrongAnswer3">
           <input className="app__radioButtons--button"
           type="radio"
-          value={currentWrongAnswer3}
+          value={answers[2][0]}
           name="answer"
-          id="wrongAnswer3"/>
-          {currentWrongAnswer3}<br /></label>
+          id={answers[2][1]}/>
+          {answers[2][0]}<br /></label>
           
           <label for="correctAnswer">
           <input className="app__radioButtons--button"
           type="radio"
-          value={currentCorrectAnswer}
+          value={answers[3][0]}
           name="answer"
-          id="correctAnswer"/>
-          {currentCorrectAnswer}<br /></label>
+          id={answers[3][1]}/>
+          {answers[3][0]}<br /></label>
           
       </div>
       <div className="app__submitButton">
