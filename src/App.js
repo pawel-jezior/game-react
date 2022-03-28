@@ -213,31 +213,39 @@ function App() {
         <h3>{currentQuestion}</h3>
       </div>
       <div className="app__radioButtons">
+      <label for="wrongAnswer1">
+
           <input className="app__radioButtons--button"
           type="radio"
           value={currentWrongAnswer1}
           name="answer"
           id="wrongAnswer1"/>
-          {currentWrongAnswer1}
-          <br />
+          {currentWrongAnswer1}<br /></label>
+          
+          <label for="wrongAnswer2">
           <input className="app__radioButtons--button"
           type="radio"
           value={currentWrongAnswer2}
           name="answer"
-          id="wrongAnswer2"/>{currentWrongAnswer2}
-          <br />
+          id="wrongAnswer2"/>
+          {currentWrongAnswer2}<br /></label>
+          
+          <label for="wrongAnswer3">
           <input className="app__radioButtons--button"
           type="radio"
           value={currentWrongAnswer3}
           name="answer"
-          id="wrongAnswer3"/>{currentWrongAnswer3}
-          <br />
+          id="wrongAnswer3"/>
+          {currentWrongAnswer3}<br /></label>
+          
+          <label for="correctAnswer">
           <input className="app__radioButtons--button"
           type="radio"
           value={currentCorrectAnswer}
           name="answer"
-          id="correctAnswer"/>{currentCorrectAnswer}
-          <br />
+          id="correctAnswer"/>
+          {currentCorrectAnswer}<br /></label>
+          
       </div>
       <div className="app__submitButton">
       <button className="app__submitButton--button" onClick={() => { check(); }}> {submitButtonName}</button>
