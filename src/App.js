@@ -224,7 +224,7 @@ const shuffleArray = (array) => {
       </div>
       <div className="app__radioButtons">
 
-          <label htmlFor="wrongAnswer1">
+          <label htmlFor={answers[0][1]}>
           <input className="app__radioButtons--button"
           type="radio"
           value={answers[0][0]}
@@ -232,7 +232,7 @@ const shuffleArray = (array) => {
           id={answers[0][1]}/>
           {answers[0][0]}<br /></label>
           
-          <label htmlFor="wrongAnswer2">
+          <label htmlFor={answers[1][1]}>
           <input className="app__radioButtons--button"
           type="radio"
           value={answers[1][0]}
@@ -240,7 +240,7 @@ const shuffleArray = (array) => {
           id={answers[1][1]}/>
           {answers[1][0]}<br /></label>
           
-          <label htmlFor="wrongAnswer3">
+          <label htmlFor={answers[2][1]}>
           <input className="app__radioButtons--button"
           type="radio"
           value={answers[2][0]}
@@ -248,7 +248,7 @@ const shuffleArray = (array) => {
           id={answers[2][1]}/>
           {answers[2][0]}<br /></label>
           
-          <label htmlFor="correctAnswer">
+          <label htmlFor={answers[3][1]}>
           <input className="app__radioButtons--button"
           type="radio"
           value={answers[3][0]}
