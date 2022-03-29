@@ -10,7 +10,7 @@ The project is a quiz with programming questions, which is fetched from Firebase
 - SCSS
 - HTML
 
-## View
+## Preview
 ![cover](src/images/story-react.png)
 
 ## How to run the program
