@@ -17,25 +17,21 @@ Project language: Polish.
 
 ## How run program
 
-1.
-clone repository on your device. In your cmd paste this command:
+1. Clone repository on your device. In your cmd paste this command:
 
 git clone https://github.com/pawel-jezior/story-react.git
 
-2.
-In cmd paste this command:
+2. In cmd paste this command:
 
 npm run start
 
-3.
-Run on your browser by localhost:
+3. Run on your browser by localhost:
 Enter:  http://localhost:3000
 
-4.
-Enjoy the quiz and story!
+4. Enjoy the quiz and story!
 
 
-or run final project **[here](https://pawel-jezior.github.io/grocery-list/)**.
+or run final project **[here](https://pawel-jezior.github.io/story-react/)**.
 
 
 ## Tested on:
