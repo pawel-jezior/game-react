@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/story-react/static/css/main.77ad927c.css",
+    "main.js": "/story-react/static/js/main.88a97701.js",
+    "index.html": "/story-react/index.html",
+    "main.77ad927c.css.map": "/story-react/static/css/main.77ad927c.css.map",
+    "main.88a97701.js.map": "/story-react/static/js/main.88a97701.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.77ad927c.css",
+    "static/js/main.88a97701.js"
+  ]
+}
