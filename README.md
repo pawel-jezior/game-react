@@ -15,20 +15,13 @@ The project is quiz, which are fetched from Firebase. Quiz have 10 question and 
 
 ## How run program
 
-1. Clone repository on your device. In your cmd paste this command:
+1. Clone repository on your device. In your cmd paste this command: `git clone https://github.com/pawel-jezior/story-react.git`
 
-`git clone https://github.com/pawel-jezior/story-react.git`
+2. In cmd paste this command: `npm run start`
 
-2. In cmd paste this command:
-
-`npm run start`
-
-3. Run on your browser by localhost:
-
-Enter:  http://localhost:3000
+3. Run on your browser by localhost: http://localhost:3000
 
 4. Enjoy the quiz and story!
-
 
 or run final project **[here](https://pawel-jezior.github.io/story-react/)**.
 
