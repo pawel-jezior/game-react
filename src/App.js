@@ -166,6 +166,7 @@ function App() {
       incrementQuestionNumber();
       incrementStoryNumber();
 
+    
     } else if (
       document.querySelector("#wrongAnswer1").checked ||
       document.querySelector("#wrongAnswer2").checked ||
@@ -194,7 +195,7 @@ function App() {
 
   const displayBotWithWrongAnswerText = () => {
 
-    if (currentBot != wrongAnswerBot
+    if (currentBot !== wrongAnswerBot
       && botNumber < 10
       && wrongAnswerCounter < 1) {
 
