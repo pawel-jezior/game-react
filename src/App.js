@@ -82,7 +82,7 @@ function App() {
   useEffect(() => {
     botNumber >= 0 ? setCurrentBot(botData[botNumber].content) : setCurrentBot("Naciśnij START");
     if (botNumber > 9){slideUpAllUnnecessarySections();}
-  }, [botNumber]);
+  },[botNumber]);
 
   useEffect(() => {
 
