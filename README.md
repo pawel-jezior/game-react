@@ -1,6 +1,6 @@
 # Story-React
 
-The project is quiz, which are fetched from Firebase. Quiz have 10 question and answers. Only one answers are good. Answers are desplayed in random order. After good answer part of story are displayed. After correct answered on all questions section with question, answers and button for submit is slide up. 
+The project is a quiz with programming questions, which is fetched from Firebase. The quiz has 10 questions and 4 answers per question. Only one answers are good. Answers are displayed in random order. After a good answer, part of the story is displayed. After correct answers to all questions section with questions, answers and button is slide up. 
 
 **Fast preview:[ webside](https://pawel-jezior.github.io/story-react/)**
 
@@ -13,9 +13,9 @@ The project is quiz, which are fetched from Firebase. Quiz have 10 question and 
 ## View
 ![cover](src/images/story-react.png)
 
-## How run program
+## How to run the program
 
-**1.** Clone repository on your device. In your cmd paste this command: 
+**1.** Clone the repository on your device. In your cmd paste this command: 
 
 `git clone https://github.com/pawel-jezior/story-react.git`
 
